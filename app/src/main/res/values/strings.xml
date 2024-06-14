@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Luxelnn</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Nosotros</string>
+    <string name="menu_gallery">Reserva</string>
+    <string name="menu_slideshow">Opiniones</string>
+
+    <string name="inicio">Iniciar sesión</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="contra">Contraseña</string>
+    <string name="guardar">Guardar datos</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="salir">Salir</string>
+
+    <string-array name="hotels_array">
+        <item>Hotel A</item>
+        <item>Hotel B</item>
+        <item>Hotel C</item>
+    </string-array>
+
+    <string-array name="hotels_info_array">
+        <item>Información sobre Hotel A</item>
+        <item>Información sobre Hotel B</item>
+        <item>Información sobre Hotel C</item>
+    </string-array>
+
+    <string-array name="rooms_array">
+        <item>1 habitación</item>
+        <item>2 habitaciones</item>
+        <item>3 habitaciones</item>
+    </string-array>
+
+    <string-array name="persons_array">
+        <item>1 persona</item>
+        <item>2 personas</item>
+        <item>3 personas</item>
+    </string-array>
+
+    <string-array name="beds_array">
+        <item>1 cama</item>
+        <item>2 camas</item>
+        <item>3 camas</item>
+    </string-array>
+
+    <string name="info">\nNos enfocamos en ofrecer a nuestros clientes una amplia selección de
+        \n
+        opciones de hospedaje, desde hoteles de lujo hasta opciones más económicas,
+        \n
+        con el objetivo de satisfacer las necesidades y preferencias de diferentes tipos de
+        viajeros.
+        \n\n
+        La empresa se destaca por su servicio al cliente personalizado y su compromiso con la
+        calidad en la experiencia de reserva</string>
+</resources>
