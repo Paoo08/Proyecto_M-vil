@@ -16,6 +16,7 @@
     <string name="contra">Contraseña</string>
     <string name="guardar">Guardar datos</string>
     <string name="ingresar">Ingresar</string>
+    <string name="registrarse">Registrar</string>
     <string name="salir">Salir</string>
 
     <string-array name="hotels_array">

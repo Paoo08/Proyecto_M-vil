@@ -11,7 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.proyecto.R
 import com.example.proyecto.Reservation
+import android.app.AlertDialog
 import com.example.proyecto.databinding.FragmentGalleryBinding
+import com.example.proyecto.SessionManager
 
 import java.util.*
 
@@ -21,12 +23,15 @@ class GalleryFragment : Fragment() {
 
     private val reservations = ArrayList<Reservation>(20)
     private val calendar = Calendar.getInstance()
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        sessionManager = SessionManager(requireContext())
 
         val hotelSpinner = binding.hotelSpinner
         val checkInDate = binding.checkInDate
@@ -37,6 +42,9 @@ class GalleryFragment : Fragment() {
         val hotelInfo = binding.hotelInfo
         val hotelImage = binding.hotelImage
         val reserveButton = binding.reserveButton
+        val viewReservationButton = binding.viewReservationButton
+        val modifyReservationButton = binding.modifyReservationButton
+        val deleteReservationButton = binding.deleteReservationButton
 
         // Configure spinners
         ArrayAdapter.createFromResource(
@@ -110,19 +118,76 @@ class GalleryFragment : Fragment() {
 
         // Handle reservation button click
         reserveButton.setOnClickListener {
-            val hotel = hotelSpinner.selectedItem.toString()
-            val checkIn = checkInDate.text.toString()
-            val checkOut = checkOutDate.text.toString()
-            val room = roomSpinner.selectedItem.toString()
-            val persons = personSpinner.selectedItem.toString()
-            val beds = bedSpinner.selectedItem.toString()
-
+            val reservation = Reservation(
+                hotelSpinner.selectedItem.toString(),
+                checkInDate.text.toString(),
+                checkOutDate.text.toString(),
+                roomSpinner.selectedItem.toString(),
+                personSpinner.selectedItem.toString(),
+                bedSpinner.selectedItem.toString()
+            )
             if (reservations.size < 20) {
-                val reservation = Reservation(hotel, checkIn, checkOut, room, persons, beds)
                 reservations.add(reservation)
+                sessionManager.saveReservation(reservation)
                 Toast.makeText(activity, "Reservación guardada", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(activity, "Límite de reservaciones alcanzado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "No se pueden guardar más de 20 reservaciones", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // View reservation button click
+        viewReservationButton.setOnClickListener {
+            val reservation = sessionManager.getReservation()
+            reservation?.let {
+                Toast.makeText(
+                    activity, "Reserva actual: Hotel ${it.hotel}, Check-in ${it.checkInDate}, Check-out ${it.checkOutDate}", Toast.LENGTH_LONG
+                ).show()
+            } ?: run {
+                Toast.makeText(activity, "No hay reservaciones guardadas", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Modify reservation button click
+        modifyReservationButton.setOnClickListener {
+            val reservation = sessionManager.getReservation()
+            reservation?.let {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setMessage("¿Estás seguro que quieres modificar esta reservación?")
+                    .setPositiveButton("Sí") { _, _ ->
+                        val modifiedReservation = Reservation(
+                            hotelSpinner.selectedItem.toString(),
+                            checkInDate.text.toString(),
+                            checkOutDate.text.toString(),
+                            roomSpinner.selectedItem.toString(),
+                            personSpinner.selectedItem.toString(),
+                            bedSpinner.selectedItem.toString()
+                        )
+                        reservations[reservations.indexOf(it)] = modifiedReservation
+                        sessionManager.saveReservation(modifiedReservation)
+                        Toast.makeText(activity, "Reservación modificada", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("No", null)
+                builder.create().show()
+            } ?: run {
+                Toast.makeText(activity, "No hay reservaciones guardadas para modificar", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Delete reservation button click
+        deleteReservationButton.setOnClickListener {
+            val reservation = sessionManager.getReservation()
+            reservation?.let {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setMessage("¿Estás seguro que quieres eliminar esta reservación?")
+                    .setPositiveButton("Sí") { _, _ ->
+                        reservations.remove(it)
+                        sessionManager.clearReservation()
+                        Toast.makeText(activity, "Reservación eliminada", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("No", null)
+                builder.create().show()
+            } ?: run {
+                Toast.makeText(activity, "No hay reservaciones guardadas para eliminar", Toast.LENGTH_SHORT).show()
             }
         }
 
