@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2D332E"
+    android:background="#3E3E3E"
     tools:context=".Acceso">
 
     <EditText
@@ -18,37 +18,20 @@
         android:ems="10"
         android:hint="@string/correo"
         android:inputType="text"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/edtContra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSesion" />
 
-    <Switch
-        android:id="@+id/swtGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="179dp"
-        android:layout_marginBottom="30dp"
-        android:hint="@string/guardar"
-        android:textColor="#070707"
-        android:textColorHint="#0E0E0E"
-        app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtContra"
-        tools:visibility="visible" />
-
     <Button
         android:id="@+id/btnSalir"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_height="48dp"
         android:layout_marginTop="175dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="245dp"
+        android:layout_marginEnd="72dp"
         android:backgroundTint="#254D32"
         android:hint="@string/salir"
         android:onClick="salir"
@@ -56,17 +39,15 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnIngresar"
-        app:layout_constraintTop_toBottomOf="@+id/edtContra" />
+        app:layout_constraintTop_toBottomOf="@+id/edtContra"
+        app:layout_constraintVertical_bias="0.062" />
 
     <Button
         android:id="@+id/btnIngresar"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="245dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="132dp"
         android:backgroundTint="#254D32"
         android:hint="@string/ingresar"
         android:onClick="ingresar"
@@ -74,8 +55,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSalir"
+        app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swtGuardar" />
+        app:layout_constraintTop_toBottomOf="@+id/edtContra"
+        app:layout_constraintVertical_bias="0.262" />
 
     <EditText
         android:id="@+id/edtContra"
@@ -84,12 +67,12 @@
         android:layout_marginStart="96dp"
         android:layout_marginTop="13dp"
         android:layout_marginEnd="95dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/contra"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@+id/swtGuardar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtCorreo" />
