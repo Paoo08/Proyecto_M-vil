@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.proyecto.R
+import com.example.proyecto.Reservation
 import com.example.proyecto.databinding.FragmentGalleryBinding
 
 import java.util.*
@@ -18,7 +19,7 @@ class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
 
-    private val reservations = ArrayList<String>()
+    private val reservations = ArrayList<Reservation>(20)
     private val calendar = Calendar.getInstance()
 
     override fun onCreateView(
@@ -109,14 +110,20 @@ class GalleryFragment : Fragment() {
 
         // Handle reservation button click
         reserveButton.setOnClickListener {
-            val reservation = "Hotel: ${hotelSpinner.selectedItem}, " +
-                    "Check-in: ${checkInDate.text}, " +
-                    "Check-out: ${checkOutDate.text}, " +
-                    "Rooms: ${roomSpinner.selectedItem}, " +
-                    "Persons: ${personSpinner.selectedItem}, " +
-                    "Beds: ${bedSpinner.selectedItem}"
-            reservations.add(reservation)
-            Toast.makeText(activity, "Reservación guardada", Toast.LENGTH_SHORT).show()
+            val hotel = hotelSpinner.selectedItem.toString()
+            val checkIn = checkInDate.text.toString()
+            val checkOut = checkOutDate.text.toString()
+            val room = roomSpinner.selectedItem.toString()
+            val persons = personSpinner.selectedItem.toString()
+            val beds = bedSpinner.selectedItem.toString()
+
+            if (reservations.size < 20) {
+                val reservation = Reservation(hotel, checkIn, checkOut, room, persons, beds)
+                reservations.add(reservation)
+                Toast.makeText(activity, "Reservación guardada", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(activity, "Límite de reservaciones alcanzado", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return root
