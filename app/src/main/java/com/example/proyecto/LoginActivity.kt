@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
         if (adminEncontrado != null) {
             Toast.makeText(this, "Bienvenido Admin", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, AdminActivity::class.java)
             startActivity(intent)
         } else {
             val savedPassword = sharedPrefManager.getUserPassword(correo)
