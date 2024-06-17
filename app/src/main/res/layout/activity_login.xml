@@ -17,7 +17,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/correo"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="19sp"

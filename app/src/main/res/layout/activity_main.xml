@@ -33,8 +33,9 @@
                 android:id="@+id/logoutButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cerrar Sesión"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:backgroundTint="#254D32"
+                android:text="Cerrar Sesión" />
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
