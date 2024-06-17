@@ -1,9 +1,11 @@
 package com.example.proyecto
 
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -11,7 +13,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var edtCorreo: EditText
     private lateinit var edtContra: EditText
     private lateinit var btnIngresar: Button
-    private lateinit var btnRegistrarse: Button
+    private lateinit var btnRegistrarse: TextView
     private lateinit var sharedPrefManager: SharedPrefManager
 
     private val administradores = listOf(
@@ -34,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
         btnIngresar.setOnClickListener { ingresar() }
         btnRegistrarse.setOnClickListener { registrarse() }
+        btnRegistrarse.paintFlags = btnRegistrarse.paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
 
     private fun ingresar() {
